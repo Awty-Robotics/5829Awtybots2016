@@ -20,8 +20,8 @@ public class Shooter extends Subsystem {
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	CANTalon leftShooter = new CANTalon(0);
-	CANTalon rightShooter = new CANTalon(1);
+	CANTalon leftShooter = new CANTalon(RobotMap.leftShooterMotor);
+	CANTalon rightShooter = new CANTalon(RobotMap.rightShooterMotor);
 	
 	//Encoder shooterEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k1X);
 	
