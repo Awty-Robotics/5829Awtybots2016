@@ -23,11 +23,8 @@ public class IntakeSystem extends Subsystem {
     }
     public void intake(double speed) {
     	
-    	if (speed == 1) {
-    		intake.set(1);
-    	}
-    	else if (speed == -1) {
-    		intake.set(-1);
+    	if (speed != 1) {
+    		intake.set(speed);
     	}
 	}
     public void doNothing() {
