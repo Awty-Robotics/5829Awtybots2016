@@ -1,31 +1,46 @@
 package org.usfirst.frc.team1114.robot.commands;
 
-import org.usfirst.frc.team1114.robot.*;
+import org.usfirst.frc.team1114.robot.Robot;
+import org.usfirst.frc.team1114.robot.subsystems.IntakeAngle;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ShooterDoNothing extends Command {
+public class IntakeUpPos extends Command {
 
-    public ShooterDoNothing() {
+    public IntakeUpPos() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.shooter);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	IntakeAngle.encIntakeAngleVal = 0;//get encoder current value
+    	if (IntakeAngle.encIntakeAngleVal <0) { 
+    		//encoder value at desired angle
+    			Robot.intakeAngle.intakeUp();
+    		}
+    		else {
+    			Robot.intakeAngle.intakeDown();
+    			}
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooter.doNothing();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+    	//get encoder current value
+    	if ((IntakeAngle.encIntakeAngleVal > -7000) && (IntakeAngle.encIntakeAngleVal <7000 )) {
+    		return true;
+    	}
+    	else {
+    		return false;	
+    	}
+        
     }
 
     // Called once after isFinished returns true

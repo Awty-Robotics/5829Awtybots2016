@@ -65,14 +65,16 @@ public class OI {
 	public OI(){
 		btnX.toggleWhenPressed(new JSCheesyDrive());
 		btnX.toggleWhenPressed(new FlippedJSCheesyDrive());
-		btnY.whileHeld(new Shoot(1));
-		btnB.whileHeld(new Shoot(0.5));
-		btnA.whileHeld(new Shoot(0.3));
+		btnY.whileHeld(new Shoot(1)); //these need to be changed to RPM
+		btnB.whileHeld(new Shoot(0.5));//change to RPM
+		btnA.whileHeld(new Shoot(0.3));//change to RPM
 		/*btn2Y.whileHeld(new Shoot(1));
 		btn2B.whileHeld(new Shoot(0.5));
 		btn2A.whileHeld(new Shoot(0.3));*/
 		btnR1.whileHeld(new Intake(1));
 		btnL1.whileHeld(new Intake(-1));
+		btnL3.whileHeld(new ShifterHighGear());
+		btnL3.toggleWhenActive(new ShifterLowGear());
 		
 			
 	}

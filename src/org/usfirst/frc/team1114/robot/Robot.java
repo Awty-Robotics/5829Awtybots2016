@@ -3,6 +3,7 @@ package org.usfirst.frc.team1114.robot;
 
 import org.usfirst.frc.team1114.robot.subsystems.*;
 
+import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -27,7 +28,8 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static final Shooter shooter = new Shooter();
 	public static final IntakeSystem intake = new IntakeSystem();
-
+	public static final IntakeAngle intakeAngle = new IntakeAngle();
+	public static final DriveGearShift driveGearShift = new DriveGearShift();
 	
     Command autonomousCommand;
 
@@ -40,6 +42,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
         // instantiate the command used for the autonomous period
         //autonomousCommand = new ExampleCommand();
+		
     }
 	
 	public void disabledPeriodic() {

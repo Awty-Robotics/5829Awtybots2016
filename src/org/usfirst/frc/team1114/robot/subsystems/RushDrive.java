@@ -3,6 +3,7 @@ package org.usfirst.frc.team1114.robot.subsystems;
 import org.usfirst.frc.team1114.robot.commands.*;
 import org.usfirst.frc.team1114.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -12,8 +13,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class RushDrive extends Subsystem {
 	//As the left and right motors will always act together, I have chosen to array the left and right motors together
-	SpeedController leftSideMotor[] = {new Victor(RobotMap.leftBackMotor), new Victor(RobotMap.leftFrontMotor)};
-	SpeedController rightSideMotor[] = {new Victor(RobotMap.rightBackMotor), new Victor(RobotMap.rightFrontMotor)};
+	CANTalon leftSideMotor[] = {new CANTalon(RobotMap.leftBackMotor), new CANTalon(RobotMap.leftFrontMotor)};
+	CANTalon rightSideMotor[] = {new CANTalon(RobotMap.rightBackMotor), new CANTalon(RobotMap.rightFrontMotor)};
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 

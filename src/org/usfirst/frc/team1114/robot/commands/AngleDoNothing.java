@@ -1,26 +1,28 @@
 package org.usfirst.frc.team1114.robot.commands;
 
-import org.usfirst.frc.team1114.robot.*;
+import org.usfirst.frc.team1114.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ShooterDoNothing extends Command {
+public class AngleDoNothing extends Command {
 
-    public ShooterDoNothing() {
+    public AngleDoNothing() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.shooter);
+    	requires(Robot.intakeAngle);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooter.doNothing();
+    	Robot.intakeAngle.intakeKeepAngle();
     }
 
     // Make this return true when this Command no longer needs to run execute()
