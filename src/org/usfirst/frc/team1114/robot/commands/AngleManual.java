@@ -28,21 +28,9 @@ public class AngleManual extends Command {
     	double up;
     	double down;
     	
-    	rawup = (Robot.oi.xbox2.getRawAxis(4));
-    	rawdown = (Robot.oi.xbox2.getRawAxis(1));
-    	
-    	/*if (rawup > 0.3){
-    		rawup = 0.3;
-    	}
-    	if (rawup < -0.3){
-    		rawup = -0.3;
-    	}
-    	if (rawdown > 0.3){
-    		rawdown = 0.3;
-    	}
-    	if (rawdown < -0.3){
-    		rawdown = -0.3;
-    	}
+    	rawup = -(Robot.oi.xbox.getRawAxis(2));
+    	rawdown = (Robot.oi.xbox.getRawAxis(3));
+
     	
     	up = (0.1*(Math.pow(11, Math.abs(rawup)))-.1);
     	down = (0.1*(Math.pow(11, Math.abs(rawdown)))-.1);
@@ -52,11 +40,11 @@ public class AngleManual extends Command {
     	}
     	if (rawdown < 0){
     		down= -(down);
-    	}*/
+    	}
 
-    	Robot.intakeAngle.angleManual(rawup, rawdown); 
-    	System.out.println("Up: "+rawup);
-    	System.out.println("Down: "+(rawdown));
+    	Robot.intakeAngle.angleManual(up, down); 
+    	System.out.println("Up: "+up);
+    	System.out.println("Down: "+(down));
     }
 
     // Make this return true when this Command no longer needs to run execute()

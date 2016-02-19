@@ -21,7 +21,7 @@ public class FlippedJSCheesyDrive extends Command {
     	SmartDashboard.putString("Drive Train", "Flipped Cheesy Drive");
     }
 
-    // Called repeatedly when this Command is scheduled to run
+ // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	double rawstraight;
     	double rawrotate;
@@ -29,7 +29,7 @@ public class FlippedJSCheesyDrive extends Command {
     	double rotate;
     	
     	rawstraight = -(Robot.oi.xbox.getRawAxis(4));
-    	rawrotate = (Robot.oi.xbox.getRawAxis(1));
+    	rawrotate = -(Robot.oi.xbox.getRawAxis(1));
     	
     	if (Math.abs(rawstraight) < 0.18) {
     		straight = 0;
@@ -38,15 +38,8 @@ public class FlippedJSCheesyDrive extends Command {
     		rotate = 0;
     	}
     	
-    	if (rawstraight < 0){
-    		rawstraight= -(rawstraight);
-    	}
-    	if (rawrotate < 0){
-    		rawrotate= -(rawrotate);
-    	}
-    	
-    	straight = (0.001*(Math.pow(1500, rawstraight)));
-    	rotate = (0.001*(Math.pow(1500, rawrotate)));
+    	straight = (0.1*(Math.pow(11, Math.abs(rawstraight)))-.1);
+    	rotate = (0.1*(Math.pow(11, Math.abs(rawrotate)))-.1);
     	
     	if (rawstraight < 0){
     		straight= -(straight);
@@ -55,10 +48,9 @@ public class FlippedJSCheesyDrive extends Command {
     		rotate= -(rotate);
     	}
 
-    	Robot.driveTrain.cheesyDrive(straight, rotate); 
+    	Robot.driveTrain.flippedCheesyDrive(straight, rotate); 
     	System.out.println("Left: "+straight);
-    	System.out.println("Right: "+-1*(rotate));
-    
+    	System.out.println("Right: "+(rotate));
     
     }
 

@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Shoot extends Command {
 	private double speed;
-    public Shoot(double s) {
+	public Shoot(double s) {
     	speed = s;
         // Use requires() here to declare subsystem dependencies
     	// eg. requires(chassis);
