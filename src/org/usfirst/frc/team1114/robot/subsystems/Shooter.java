@@ -6,6 +6,7 @@ import org.usfirst.frc.team1114.robot.commands.ShooterDoNothing;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
+import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
@@ -20,8 +21,8 @@ public class Shooter extends Subsystem {
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	CANTalon leftShooter = new CANTalon(0);
-	CANTalon rightShooter = new CANTalon(1);
+	CANTalon leftShooter = new CANTalon(RobotMap.leftShooterMotor);
+	CANTalon rightShooter = new CANTalon(RobotMap.rightShooterMotor);
 
 	
 	//Encoder shooterEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k1X);
@@ -96,20 +97,36 @@ public class Shooter extends Subsystem {
     	setDefaultCommand(new ShooterDoNothing());
     	//shooterEncoder.setMinRate(0);
     	//shooterEncoder.reset();
-    	leftShooter.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-    	rightShooter.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
     }
     
     public void shoot(double speed) {
-    	//leftShooter.changeControlMode(TalonControlMode.Speed);
+    	leftShooter.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+    	rightShooter.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+    	
+    	leftShooter.reverseSensor(false);
+    	rightShooter.reverseSensor(false);
+    	
+    	leftShooter.changeControlMode(TalonControlMode.Speed);
+    	rightShooter.changeControlMode(TalonControlMode.Speed);
+    	
+    	//(p, i, d, f, izone, closeLoopRampRate, profile)
+    	leftShooter.setPID(0, 0, 0, 0, 0, 0, 0);
+    	rightShooter.setPID(0, 0, 0, 0, 0, 0, 0);
+    	
     	leftShooter.set(speed);
-    	//rightShooter.changeControlMode(TalonControlMode.Speed);
     	rightShooter.set(speed);
        	
     }
     public void doNothing() {
     	rightShooter.set(0);
     	leftShooter.set(0);
+    }
+    	
+    	public void manualShoot(double speed) {
+    		leftShooter.changeControlMode(TalonControlMode.PercentVbus);
+        	rightShooter.changeControlMode(TalonControlMode.PercentVbus);
+    		rightShooter.set(speed);
+        	leftShooter.set(speed);
     }
 }
 

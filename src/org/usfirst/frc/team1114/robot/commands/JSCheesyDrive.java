@@ -23,19 +23,31 @@ public class JSCheesyDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	double rawstraight;
+    	double rawrotate;
     	double straight;  
     	double rotate;
     	
-    	straight = Robot.oi.xbox.getRawAxis(4);
-    	rotate = -(Robot.oi.xbox.getRawAxis(1));
-
-    	if (Math.abs(straight) < 0.18) {
+    	rawstraight = -(Robot.oi.xbox.getRawAxis(4));
+    	rawrotate = -(Robot.oi.xbox.getRawAxis(1));
+    	
+    	if (Math.abs(rawstraight) < 0.18) {
     		straight = 0;
     	}
-    	if (Math.abs(rotate) < 0.18) {
+    	if (Math.abs(rawrotate) < 0.18) {
     		rotate = 0;
     	}
-    
+    	
+    	straight = (0.1*(Math.pow(11, Math.abs(rawstraight)))-.1);
+    	rotate = (0.1*(Math.pow(11, Math.abs(rawrotate)))-.1);
+    	
+    	if (rawstraight < 0){
+    		straight= -(straight);
+    	}
+    	if (rawrotate < 0){
+    		rotate= -(rotate);
+    	}
+
     	Robot.driveTrain.cheesyDrive(straight, rotate); 
     	System.out.println("Left: "+straight);
     	System.out.println("Right: "+-1*(rotate));

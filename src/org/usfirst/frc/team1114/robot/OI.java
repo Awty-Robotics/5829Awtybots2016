@@ -63,17 +63,23 @@ public class OI {
 	Button btn2R3 = new JoystickButton(xbox2, 10);
 	
 	public OI(){
+
 		btnX.toggleWhenPressed(new JSCheesyDrive());
 		btnX.toggleWhenPressed(new FlippedJSCheesyDrive());
-		btnY.whileHeld(new Shoot(1));
-		btnB.whileHeld(new Shoot(0.5));
-		btnA.whileHeld(new Shoot(0.3));
-		/*btn2Y.whileHeld(new Shoot(1));
-		btn2B.whileHeld(new Shoot(0.5));
-		btn2A.whileHeld(new Shoot(0.3));*/
-		btnR1.whileHeld(new Intake(1));
-		btnL1.whileHeld(new Intake(-1));
 		
+		btnR1.whileHeld(new ManualShoot(1));
+		btn2Y.whileHeld(new Shoot(1));//change to RPM
+		
+		btnL1.whileHeld(new Intake(1));
+		btnA.whileHeld(new Intake(-1));
+		btnB.whenPressed(new HorizontalAngle());
+		
+		btnL3.whileHeld(new ShifterHighGear());
+		
+		btnStart.whileHeld(new ExtendTapeMeasure(1));
+		btnBack.whileHeld(new ExtendTapeMeasure(-1));
+		btnBack.whileHeld(new WinchReel(-1));
+
 			
 	}
 }
