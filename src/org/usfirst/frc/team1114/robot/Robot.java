@@ -43,6 +43,7 @@ public class Robot extends IterativeRobot {
 	public static final ScalingWinches scalingWinch = new ScalingWinches();
 	public static final ScalingWheelTapeMeasure scalingTape = new ScalingWheelTapeMeasure();
 	public static final ShifterDriveGear shiftDriveGear = new ShifterDriveGear();
+	public static final Electrical electrical = new Electrical();
 	
 
 	

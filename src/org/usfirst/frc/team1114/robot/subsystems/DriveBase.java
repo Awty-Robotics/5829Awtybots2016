@@ -4,6 +4,7 @@ import org.usfirst.frc.team1114.robot.commands.*;
 import org.usfirst.frc.team1114.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -39,4 +40,5 @@ public class DriveBase extends Subsystem {
     	for(int i=0;i<2;i++){ leftSideMotor[i].set(straight - rotate); }
     	for(int i=0;i<2;i++){ rightSideMotor[i].set(straight + rotate); }
     }
+  
 }

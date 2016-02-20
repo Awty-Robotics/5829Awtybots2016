@@ -23,12 +23,11 @@ public class RobotMap {
 	public static int leftWinchMotor = 10;
 	public static int rightWinchMotor = 11;
 	
-	public static int shifterReverse = 0;
-	public static int shifterForward = 1;
+	public static int shiftHigh = 0;
+	public static int shiftLow = 1;
 	
 	public static int shooterSwitch = 0;
 	
-    
     // If you are using multiple modules, make sure to define both the port
     // number and the module. For example you with a rangefinder:
     // public static int rangefinderPort = 1;

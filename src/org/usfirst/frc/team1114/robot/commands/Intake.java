@@ -9,14 +9,21 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class Intake extends Command {
 	private double power;
+	public double speed;
     public Intake(double p) {
     	power = p;
+    }
+    
+    public Intake(double p, double s){
+    	power = p;
+    	speed = s;
     }
 
     public Intake() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.intake);
+    	requires(Robot.shooter);
     }
 
     // Called just before this Command runs the first tie
@@ -27,6 +34,7 @@ public class Intake extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.intake.intake(power);
+    	Robot.intake.intakeShoot(power, speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()

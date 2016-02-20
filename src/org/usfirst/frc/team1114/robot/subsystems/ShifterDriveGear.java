@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class ShifterDriveGear extends Subsystem {
-    DoubleSolenoid solenoid = new DoubleSolenoid (RobotMap.shifterReverse, RobotMap.shifterForward);
+    DoubleSolenoid solenoid = new DoubleSolenoid (RobotMap.shiftHigh, RobotMap.shiftLow);
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
