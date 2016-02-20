@@ -77,9 +77,9 @@ public class Shooter extends Subsystem {
 		
 		// get and display values from encoder
 		SmartDashboard.putNumber("Rate",leftShooter.getEncVelocity());
-		SmartDashboard.putNumber("Left Speed: ", leftSpeed);
+		SmartDashboard.putNumber("Left Speed: ", Math.abs(leftSpeed));
 		SmartDashboard.putNumber("Right Speed: ", Math.abs(rightSpeed));
-		SmartDashboard.putNumber("Left Speed Value:", leftSpeed);
+		SmartDashboard.putNumber("Left Speed Value:", Math.abs(leftSpeed));
 		SmartDashboard.putNumber("Right Speed Value:", Math.abs(rightSpeed));
 		SmartDashboard.putNumber("Average Speed: ", avgSpeed);
 		
@@ -103,21 +103,32 @@ public class Shooter extends Subsystem {
     	leftShooter.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
     	rightShooter.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
     	
-    	leftShooter.reverseSensor(false);
+    	leftShooter.reverseSensor(true);
     	rightShooter.reverseSensor(false);
     	
     	leftShooter.changeControlMode(TalonControlMode.Speed);
     	rightShooter.changeControlMode(TalonControlMode.Speed);
     	
-    	//(p, i, d, f, izone, closeLoopRampRate, profile)
-    	leftShooter.setPID(0, 0, 0, 0, 0, 0, 0);
-    	rightShooter.setPID(0, 0, 0, 0, 0, 0, 0);
+    	leftShooter.configNominalOutputVoltage(+0.0f, -0.0f);
+    	rightShooter.configPeakOutputVoltage(+12.0f, -0.0f);
     	
-    	leftShooter.set(speed);
-    	rightShooter.set(speed);
+    	double shooterP = Robot.prefs.getDouble("shooterP", 0.4);
+    	double shooterI = Robot.prefs.getDouble("shooterI", 0);
+    	double shooterD = Robot.prefs.getDouble("shooterD", 4);
+    	double shooterF = Robot.prefs.getDouble("shooterF", 0);
+    	double prefspeed = Robot.prefs.getDouble("prefspeed", 3000);
+    	
+    	//(p, i, d, f, izone, closeLoopRampRate, profile)
+    	leftShooter.setPID(shooterP, shooterI, shooterD, shooterF, 0, 0, 0);
+    	rightShooter.setPID(shooterP, shooterI, shooterD, shooterF, 0, 0, 0);
+    	
+    	leftShooter.set(prefspeed);
+    	rightShooter.set(prefspeed);
        	
     }
     public void doNothing() {
+    	leftShooter.changeControlMode(TalonControlMode.PercentVbus);
+    	rightShooter.changeControlMode(TalonControlMode.PercentVbus);
     	rightShooter.set(0);
     	leftShooter.set(0);
     }
