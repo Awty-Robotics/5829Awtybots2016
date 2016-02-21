@@ -35,7 +35,7 @@ public class Robot extends IterativeRobot {
     public static Preferences prefs;
     
 	//public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
-	public static final DriveBase driveTrain = new DriveBase();
+	public static final RushDrive driveTrain = new RushDrive();
 	public static OI oi;
 	public static final Shooter shooter = new Shooter();
 	public static final IntakeRollers intake = new IntakeRollers();

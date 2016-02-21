@@ -18,14 +18,15 @@ public class ShifterDriveGear extends Subsystem {
     public void initDefaultCommand() {
     	setDefaultCommand (new ShifterLowGear());
         // Set the default command for a subsystem here.
+    	
         //setDefaultCommand(new MySpecialCommand());
     }
     
     public void lowGear(){
-    	solenoid.set(DoubleSolenoid.Value.kReverse);
+    	solenoid.set(DoubleSolenoid.Value.kForward);
     }
     public void highGear(){ 
-    	solenoid.set(DoubleSolenoid.Value.kForward);
+    	solenoid.set(DoubleSolenoid.Value.kReverse);
     }
 }
 

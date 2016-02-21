@@ -68,12 +68,10 @@ public class OI {
 		btnX.toggleWhenPressed(new FlippedJSCheesyDrive());
 		
 		btn2Y.whileHeld(new ManualShoot(1));
-		btnR1.whenPressed(new Shoot(2000));
-		btnR1.whenPressed(new Shoot(0));
+		btnR1.whileHeld(new Shoot(2000));
 		
 		btnL1.whileHeld(new Intake(1));
 		btnA.whileHeld(new Intake(-1));
-		btnY.whileHeld(new Intake(1, 2000));
 		btnB.whenPressed(new HorizontalAngle());
 		
 		btnL3.whileHeld(new ShifterHighGear());

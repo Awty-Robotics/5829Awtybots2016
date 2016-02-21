@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class DriveBase extends Subsystem {
+public class RushDrive extends Subsystem {
 	//As the left and right motors will always act together, I have chosen to array the left and right motors together
 	CANTalon leftSideMotor[] = {new CANTalon(RobotMap.leftBackMotor), new CANTalon(RobotMap.leftFrontMotor)};
 	CANTalon rightSideMotor[] = {new CANTalon(RobotMap.rightBackMotor), new CANTalon(RobotMap.rightFrontMotor)};

@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -23,6 +24,7 @@ public class Shooter extends Subsystem {
     // here. Call these from Commands.
 	CANTalon leftShooter = new CANTalon(RobotMap.leftShooterMotor);
 	CANTalon rightShooter = new CANTalon(RobotMap.rightShooterMotor);
+	public Timer timer = new Timer();
 
 	
 	//Encoder shooterEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k1X);
@@ -125,6 +127,17 @@ public class Shooter extends Subsystem {
     	leftShooter.set(prefspeed);
     	rightShooter.set(prefspeed);
        	
+    }
+    
+    public boolean ready() {
+    	double prefready = Robot.prefs.getDouble("ready", 20);
+    	
+    	if (Math.abs(leftShooter.getClosedLoopError())< prefready ){
+    		Timer.delay(1);
+    		return true;
+    	}else{ 
+    		return false;
+    	}
     }
     public void doNothing() {
     	leftShooter.changeControlMode(TalonControlMode.PercentVbus);
