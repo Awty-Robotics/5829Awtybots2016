@@ -38,7 +38,7 @@ public class Shooter extends Subsystem {
 		double fireA, fireB, fireY = 0.0;
 		
 		//average speed of the two shooter motors
-		avgSpeed = (leftSpeed+Math.abs(rightSpeed))/2;
+		avgSpeed = (Math.abs(leftSpeed)+Math.abs(rightSpeed))/2;
 		
 		//low speed shooting range
 		if(1500.0 < avgSpeed){
@@ -78,12 +78,14 @@ public class Shooter extends Subsystem {
 		
 		
 		// get and display values from encoder
-		SmartDashboard.putNumber("Rate",leftShooter.getEncVelocity());
+		SmartDashboard.putNumber("RateL",leftShooter.getSpeed());
+		SmartDashboard.putNumber("RateR",rightShooter.getSpeed());
 		SmartDashboard.putNumber("Left Speed: ", Math.abs(leftSpeed));
 		SmartDashboard.putNumber("Right Speed: ", Math.abs(rightSpeed));
 		SmartDashboard.putNumber("Left Speed Value:", Math.abs(leftSpeed));
 		SmartDashboard.putNumber("Right Speed Value:", Math.abs(rightSpeed));
 		SmartDashboard.putNumber("Average Speed: ", avgSpeed);
+		SmartDashboard.putNumber("Error: ", leftShooter.getClosedLoopError());
 		
 		// used for displaying a green bar that will tell the drivers when to fire the ball
 		SmartDashboard.putNumber("Low Speed Fire!!", fireA);
@@ -105,20 +107,20 @@ public class Shooter extends Subsystem {
     	leftShooter.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
     	rightShooter.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
     	
-    	leftShooter.reverseSensor(true);
-    	rightShooter.reverseSensor(false);
+    	leftShooter.reverseSensor(false);
+    	rightShooter.reverseSensor(true);
     	
     	leftShooter.changeControlMode(TalonControlMode.Speed);
     	rightShooter.changeControlMode(TalonControlMode.Speed);
     	
-    	leftShooter.configNominalOutputVoltage(+0.0f, -0.0f);
+    	leftShooter.configPeakOutputVoltage(+12.0f, -0.0f);
     	rightShooter.configPeakOutputVoltage(+12.0f, -0.0f);
     	
     	double shooterP = Robot.prefs.getDouble("shooterP", 0.4);
     	double shooterI = Robot.prefs.getDouble("shooterI", 0);
     	double shooterD = Robot.prefs.getDouble("shooterD", 4);
     	double shooterF = Robot.prefs.getDouble("shooterF", 0);
-    	double prefspeed = Robot.prefs.getDouble("prefspeed", 3000);
+    	double prefspeed = Robot.prefs.getDouble("prefspeed", 100);
     	
     	//(p, i, d, f, izone, closeLoopRampRate, profile)
     	leftShooter.setPID(shooterP, shooterI, shooterD, shooterF, 0, 0, 0);
@@ -128,29 +130,28 @@ public class Shooter extends Subsystem {
     	rightShooter.set(prefspeed);
        	
     }
+    public void manualShoot(double speed) {
+		leftShooter.changeControlMode(TalonControlMode.PercentVbus);
+    	rightShooter.changeControlMode(TalonControlMode.PercentVbus);
+		rightShooter.set(speed);
+    	leftShooter.set(speed);
+    }
     
     public boolean ready() {
-    	double prefready = Robot.prefs.getDouble("ready", 20);
+    	double prefready = Robot.prefs.getDouble("ready", 9);
     	
     	if (Math.abs(leftShooter.getClosedLoopError())< prefready ){
-    		Timer.delay(1);
     		return true;
     	}else{ 
     		return false;
     	}
     }
+    
     public void doNothing() {
     	leftShooter.changeControlMode(TalonControlMode.PercentVbus);
     	rightShooter.changeControlMode(TalonControlMode.PercentVbus);
     	rightShooter.set(0);
     	leftShooter.set(0);
-    }
-    	
-    	public void manualShoot(double speed) {
-    		leftShooter.changeControlMode(TalonControlMode.PercentVbus);
-        	rightShooter.changeControlMode(TalonControlMode.PercentVbus);
-    		rightShooter.set(speed);
-        	leftShooter.set(speed);
     }
 }
 

@@ -28,8 +28,8 @@ public class AngleManual extends Command {
     	double up;
     	double down;
     	
-    	rawup = -(Robot.oi.xbox.getRawAxis(2));
-    	rawdown = (Robot.oi.xbox.getRawAxis(3));
+    	rawup = -(Robot.oi.xbox.getRawAxis(2)+Robot.oi.xbox2.getRawAxis(2));
+    	rawdown = (Robot.oi.xbox.getRawAxis(3)+Robot.oi.xbox2.getRawAxis(3));
 
     	
     	up = (0.1*(Math.pow(11, Math.abs(rawup)))-.1);

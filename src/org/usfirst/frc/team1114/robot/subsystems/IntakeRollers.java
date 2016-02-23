@@ -20,6 +20,7 @@ public class IntakeRollers extends Subsystem {
 	DigitalInput shooterSwitch = new DigitalInput(RobotMap.shooterSwitch);
 	public Joystick xbox = new Joystick(0);
 	Button btnR1 = new JoystickButton(xbox, 6);
+	public Timer timer = new Timer();
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.

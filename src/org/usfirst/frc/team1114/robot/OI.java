@@ -67,18 +67,29 @@ public class OI {
 		btnX.toggleWhenPressed(new JSCheesyDrive());
 		btnX.toggleWhenPressed(new FlippedJSCheesyDrive());
 		
-		btn2Y.whileHeld(new ManualShoot(1));
-		btnR1.whileHeld(new Shoot(2000));
+		btnY.whileHeld(new Shoot(200));
+		btn2Y.whileHeld(new Shoot(200));
+		
+		btnA.whileHeld(new Shoot(100));
+		btn2A.whileHeld(new Shoot(100));
 		
 		btnL1.whileHeld(new Intake(1));
-		btnA.whileHeld(new Intake(-1));
+		btnR1.whileHeld(new Intake(-1));
+		
+		btn2L1.whileHeld(new Intake(1));
+		btn2R1.whileHeld(new Intake(-1));
+		
 		btnB.whenPressed(new HorizontalAngle());
 		
-		btnL3.whileHeld(new ShifterHighGear());
+		btnL3.whileHeld(new ShifterLowGear());
 		
-		btnStart.whileHeld(new ExtendTapeMeasure(1));
-		btnBack.whileHeld(new ExtendTapeMeasure(-1));
-		btnBack.whileHeld(new WinchReel(-1));
+		btnStart.whileHeld(new ExtendTapeMeasure(-1));
+		btnBack.whileHeld(new ExtendTapeMeasure(11));
+		btnBack.whileHeld(new WinchReel(1));
+		
+		btn2Start.whileHeld(new ExtendTapeMeasure(-1));
+		btn2Back.whileHeld(new ExtendTapeMeasure(11));
+		btn2Back.whileHeld(new WinchReel(1));
 
 			
 	}
@@ -99,10 +110,13 @@ Back Button			7
 Start Button		8	
 Left Stick Click	9
 Right Stick Click	10	
-D-Pad Up			Unavailable
-D-Pad Down			Unavailable
-D-Pad Left			Unavailable
-D-Pad Right			Unavailable
+D-Pad Up			Treats like a Joystick
+D-Pad Down			Treats like a Joystick
+D-Pad Left			Treats like a Joystick
+D-Pad Right			Treats like a Joystick
 Xbox Button		
  */
 
+// Left/Right on D-Pad Joystick Axis, Axis 6
+// Up/Down on D-Pad Joystick Axis, Axis 7
+// Adress D-Pad as Joystick Axis,

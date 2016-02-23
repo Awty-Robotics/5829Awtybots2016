@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 //import org.usfirst.frc.team1114.robot.subsystems.ExampleSubsystem;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.vision.USBCamera;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,15 +29,18 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	int session;
-    Image frame;
-    
+
     
     public static Preferences prefs;
+    CameraServer server;
+    USBCamera targetCam;
+    public static int g_exp;
     
 	//public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
-	public static final RushDrive driveTrain = new RushDrive();
 	public static OI oi;
+	
+    //subsystems
+	public static final DriveBase driveTrain = new DriveBase();
 	public static final Shooter shooter = new Shooter();
 	public static final IntakeRollers intake = new IntakeRollers();
 	public static final IntakeAngle intakeAngle = new IntakeAngle();
@@ -44,8 +48,6 @@ public class Robot extends IterativeRobot {
 	public static final ScalingWheelTapeMeasure scalingTape = new ScalingWheelTapeMeasure();
 	public static final ShifterDriveGear shiftDriveGear = new ShifterDriveGear();
 	public static final Electrical electrical = new Electrical();
-	
-
 	
     Command autonomousCommand;
 
@@ -56,17 +58,27 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	
 		oi = new OI();
+		prefs = Preferences.getInstance();
+		
+    	targetCam = new USBCamera("cam0");
+    	targetCam.setBrightness(prefs.getInt("cameraBrightness", 10));
+    	targetCam.setExposureManual(prefs.getInt("cameraExposure", 10));
+    	//targetCam.setSize(width, height);
+    	
+		server = CameraServer.getInstance();
+		
         // instantiate the command used for the autonomous period
         //autonomousCommand = new ExampleCommand();
-		frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
+
 
         // the camera name (ex "cam0") can be found through the roborio web interface
-        session = NIVision.IMAQdxOpenCamera("cam0",
+        /*session = NIVision.IMAQdxOpenCamera("cam0",
                 NIVision.IMAQdxCameraControlMode.CameraControlModeController);
-        NIVision.IMAQdxConfigureGrab(session);
-        
-        prefs = Preferences.getInstance();
-        
+        NIVision.IMAQdxConfigureGrab(session);*/
+    	
+    	//SmartDashboard.putNumber("Brightness", targetCam.getBrightness());
+    	
+       
     }
 	
 	public void disabledPeriodic() {
@@ -105,8 +117,9 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+        Image image = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
+        
         //Scheduler.getInstance().run();
-        NIVision.IMAQdxStartAcquisition(session);
 
         /**
          * grab an image, draw the circle, and provide it for the camera server
@@ -114,19 +127,22 @@ public class Robot extends IterativeRobot {
          */
         NIVision.Rect rect = new NIVision.Rect(10, 10, 100, 100);
 
+    	targetCam.startCapture();
+    	
         while (isOperatorControl() && isEnabled()) {
         	Scheduler.getInstance().run();
 
-            NIVision.IMAQdxGrab(session, frame, 1);
-            NIVision.imaqDrawShapeOnImage(frame, frame, rect,
+            targetCam.getImage(image);
+            
+            NIVision.imaqDrawShapeOnImage(image, image, rect,
                     DrawMode.DRAW_VALUE, ShapeMode.SHAPE_OVAL, 0.0f);
             
-            CameraServer.getInstance().setImage(frame);
+            server.setImage(image);
 
             /** robot code here! **/
             Timer.delay(0.005);		// wait for a motor update time
         }
-        NIVision.IMAQdxStopAcquisition(session);
+        targetCam.stopCapture();
     }
     
     /**
