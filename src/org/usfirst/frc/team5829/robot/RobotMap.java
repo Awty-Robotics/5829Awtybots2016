@@ -22,6 +22,9 @@ public class RobotMap {
 	public static int leftTapeMeasureMotor = 4;
 	public static int leftWinchMotor = 5;
 	public static int rightWinchMotor = 10;
+	public static int Rled=1;
+	public static int Gled=2;
+	public static int Bled=3;
 	
 	public static int shiftHigh = 0;
 	public static int shiftLow = 1;

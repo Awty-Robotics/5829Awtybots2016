@@ -119,6 +119,7 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Image image = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
         
+        
         //Scheduler.getInstance().run();
 
         /**
@@ -134,15 +135,17 @@ public class Robot extends IterativeRobot {
 
             targetCam.getImage(image);
             
-            NIVision.imaqDrawShapeOnImage(image, image, rect,
-                    DrawMode.DRAW_VALUE, ShapeMode.SHAPE_OVAL, 0.0f);
+            //NIVision.imaqDrawShapeOnImage(image, image, rect,
+                    //DrawMode.DRAW_VALUE, ShapeMode.SHAPE_OVAL, 0.0f);
             
             server.setImage(image);
 
             /** robot code here! **/
+            electrical.pArTy(0, 1000, 0);
             Timer.delay(0.005);		// wait for a motor update time
         }
         targetCam.stopCapture();
+        electrical.pArTy(1000, 0, 0);
     }
     
     /**
