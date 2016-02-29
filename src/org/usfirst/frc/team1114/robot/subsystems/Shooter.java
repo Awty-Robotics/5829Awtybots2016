@@ -86,6 +86,8 @@ public class Shooter extends Subsystem {
 		SmartDashboard.putNumber("Right Speed Value:", Math.abs(rightSpeed));
 		SmartDashboard.putNumber("Average Speed: ", avgSpeed);
 		SmartDashboard.putNumber("Error: ", leftShooter.getClosedLoopError());
+		SmartDashboard.putNumber("Left Shooter Current Draw: ", leftShooter.getOutputCurrent());
+		SmartDashboard.putNumber("Right Shooter Current Draw: ", rightShooter.getOutputCurrent());
 		
 		// used for displaying a green bar that will tell the drivers when to fire the ball
 		SmartDashboard.putNumber("Low Speed Fire!!", fireA);

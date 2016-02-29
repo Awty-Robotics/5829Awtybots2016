@@ -31,10 +31,10 @@ public class JSCheesyDrive extends Command {
     	rawstraight = -(Robot.oi.xbox.getRawAxis(4));
     	rawrotate = -(Robot.oi.xbox.getRawAxis(1));
     	
-    	if (Math.abs(rawstraight) < 0.18) {
+    	if (Math.abs(rawstraight) < 0.25) {
     		straight = 0;
     	}
-    	if (Math.abs(rawrotate) < 0.18) {
+    	if (Math.abs(rawrotate) < 0.25) {
     		rotate = 0;
     	}
     	

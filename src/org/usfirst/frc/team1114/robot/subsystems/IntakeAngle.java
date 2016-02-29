@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -31,6 +32,8 @@ public class IntakeAngle extends Subsystem {
 	    }
 	   
 	    public void horizontalAngle(){
+	    	int horizontalPosition = 0;
+	    	int startPosition = 0;
 	    	angleMotor.setFeedbackDevice(FeedbackDevice.AnalogPot);
 	    	
 	    	angleMotor.reverseSensor(false);
@@ -38,9 +41,10 @@ public class IntakeAngle extends Subsystem {
 	    	angleMotor.changeControlMode(TalonControlMode.Position);
 	    	
 	    	//(p, i, d, f, izone, closeLoopRampRate, profile)
-	    	angleMotor.setPID(0, 0, 0, 0, 0, 0, 0);
+	    	angleMotor.setPID(.5, .00009, .5, 0, 0, 0, 0);
+			SmartDashboard.putNumber("Angle of Intake: ", angleMotor.getPosition());
+	    	angleMotor.set(horizontalPosition);//degrees to be horizontal
 	    	
-	    	angleMotor.set(0);//degrees to be horizontal
 	    }
 	    
 	    public boolean targetReached(){

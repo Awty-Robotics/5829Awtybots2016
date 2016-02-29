@@ -40,7 +40,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	
     //subsystems
-	public static final DriveBase driveTrain = new DriveBase();
+	public static final RushDrive driveTrain = new RushDrive();
 	public static final Shooter shooter = new Shooter();
 	public static final IntakeRollers intake = new IntakeRollers();
 	public static final IntakeAngle intakeAngle = new IntakeAngle();
@@ -134,8 +134,7 @@ public class Robot extends IterativeRobot {
 
             targetCam.getImage(image);
             
-            NIVision.imaqDrawShapeOnImage(image, image, rect,
-                    DrawMode.DRAW_VALUE, ShapeMode.SHAPE_OVAL, 0.0f);
+            //NIVision.imaqDrawShapeOnImage(image, image, rect,DrawMode.DRAW_VALUE, ShapeMode.SHAPE_OVAL, 0.0f);
             
             server.setImage(image);
 
