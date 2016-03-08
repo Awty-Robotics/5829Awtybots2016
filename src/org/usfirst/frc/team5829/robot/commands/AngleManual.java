@@ -41,8 +41,12 @@ public class AngleManual extends Command {
     	if (rawdown < 0){
     		down= -(down);
     	}
-
+    	if(up<0 && down>0){
+    		Robot.intakeAngle.angleManual(-.2, .05);
+    	}
+    	else{
     	Robot.intakeAngle.angleManual(up, down); 
+    	}
     	System.out.println("Up: "+up);
     	System.out.println("Down: "+(down));
     }

@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -31,11 +32,14 @@ public class IntakeRollers extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     public void intake(double power) {
-    	if ((shooterSwitch.get() == false) && (power > 0) && (!Robot.shooter.ready())){
+    	/*if ((shooterSwitch.get() == true) && (power > 0) && (!Robot.shooter.ready())){
     	 intake.set(0);
     	 }else{
     	 intake.set(power);
     	 }
+    	 */
+    	intake.set(power);
+    	SmartDashboard.putBoolean("Ball ? : ", shooterSwitch.get());
     }
     public void doNothing() {
     	intake.set(0);

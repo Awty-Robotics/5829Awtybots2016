@@ -1,18 +1,16 @@
 package org.usfirst.frc.team5829.robot.commands;
 
-import org.usfirst.frc.team5829.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class GreenLED extends Command {
+public class ghettoIntakeHold extends Command {
 
-    public GreenLED() {
+    public ghettoIntakeHold() {
         // Use requires() here to declare subsystem dependencies
-        //requires(Electrical);
-    	requires(Robot.electrical);
+        // eg. requires(chassis);
+    	
     }
 
     // Called just before this Command runs the first time
@@ -21,7 +19,6 @@ public class GreenLED extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.electrical.pArTy(0, 255, 0);
     }
 
     // Make this return true when this Command no longer needs to run execute()

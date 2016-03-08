@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -31,6 +32,8 @@ public class IntakeAngle extends Subsystem {
 	    public void angleManual (double up, double down){
 	    	angleMotor.changeControlMode(TalonControlMode.PercentVbus);
 	    	angleMotor.set((up+down)/3);//Will set the variables left and right Speed to joystick values in command
+	    	SmartDashboard.putNumber("Left Trigger: ", up);
+	    	SmartDashboard.putNumber("Right Trigger: ", down);
 	    }
 	   
 	    public void horizontalAngle(){
