@@ -21,7 +21,7 @@ public class GreenLED extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.electrical.pArTy(0, 275, 0);
+    	//Robot.electrical.pArTy(0, 275, 0);
     }
 
     // Make this return true when this Command no longer needs to run execute()

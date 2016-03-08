@@ -141,11 +141,11 @@ public class Robot extends IterativeRobot {
             server.setImage(image);
 
             /** robot code here! **/
-            electrical.pArTy(0, 1000, 0);
+            //electrical.pArTy(0, 1000, 0);
             Timer.delay(0.005);		// wait for a motor update time
         }
         targetCam.stopCapture();
-        electrical.pArTy(1000, 0, 0);
+        //electrical.pArTy(1000, 0, 0);
     }
     
     /**
