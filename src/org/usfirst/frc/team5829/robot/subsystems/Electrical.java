@@ -42,7 +42,7 @@ public class Electrical extends Subsystem {
 		//cmp.start();
 	}
 
-	public void pArTy(int rPWM,int gPWM, int bPWM){
+	/*public void pArTy(int rPWM,int gPWM, int bPWM){
 		r= new PWM(RobotMap.Rled);
 		g= new PWM(RobotMap.Gled);
 		b= new PWM(RobotMap.Bled);
@@ -50,7 +50,7 @@ public class Electrical extends Subsystem {
 		g.setRaw(gPWM);
 		b.setRaw(bPWM);
 		
-	}
+	}*/
 	/*
 	public void setCompressor(boolean var){
 		if(var)
