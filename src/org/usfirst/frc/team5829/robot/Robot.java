@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 //import org.usfirst.frc.team1114.robot.commands.ExampleCommand;
 //import org.usfirst.frc.team1114.robot.subsystems.ExampleSubsystem;
 
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.vision.USBCamera;
 
@@ -50,7 +51,8 @@ public class Robot extends IterativeRobot {
 	public static final Electrical electrical = new Electrical();
 	public static final ShooterAngle shooterAngle = new ShooterAngle();
 	
-    Command autonomousCommand;
+    Command autonomousCommand; 
+    SendableChooser autonChooser;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -67,6 +69,16 @@ public class Robot extends IterativeRobot {
     	//targetCam.setSize(width, height);
     	
 		server = CameraServer.getInstance();
+		
+		autonChooser = new SendableChooser();
+		autonChooser.addDefault("Low Bar", new Autonomous(0));
+		autonChooser.addObject("Moat", new Autonomous(1));
+		autonChooser.addObject("Rough Terrain", new Autonomous(2));
+		autonChooser.addObject("Ramparts", new Autonomous(3));
+		autonChooser.addObject("Rock Wall", new Autonomous(4));
+		autonChooser.addObject("Breach", new Autonomous(5));
+		autonChooser.addObject("Do Nothing", new Autonomous(6));
+		SmartDashboard.putData("Choose Auton", autonChooser);
 		
         // instantiate the command used for the autonomous period
         //autonomousCommand = new ExampleCommand();
@@ -88,7 +100,7 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
-    	autonomousCommand = new Autonomous();
+    	autonomousCommand = (Command) autonChooser.getSelected();
         if (autonomousCommand != null) autonomousCommand.start();
     }
 
