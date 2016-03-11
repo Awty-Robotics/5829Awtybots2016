@@ -35,12 +35,12 @@ public class ShooterAngle extends Subsystem {
     	//angle.setPID(1, .0001, 0, 0, 0, 0, 0);
     	
     	angle.set(setAngle);
-    	if(angle.getPosition()<0){
+    	/*if(angle.getPosition()<0){
     		angle.set(0);
     	}
     	else if(angle.getPosition()>150000){
     		angle.set(0);
-    	}
+    	}*/
     	
     	
 	}

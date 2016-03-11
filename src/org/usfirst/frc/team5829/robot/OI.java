@@ -89,13 +89,17 @@ public class OI {
 		btnL3.whenReleased(new ShifterLowGear());
 		btnL3.whenPressed(new ShifterHighGear());
 		
-		btnStart.whileHeld(new ExtendTapeMeasure(-.3));
+		/*btnStart.whileHeld(new ExtendTapeMeasure(-.3));
 		btnBack.whileHeld(new ExtendTapeMeasure(.3));
-		btnBack.whileHeld(new WinchReel(.3));
+		btnBack.whileHeld(new WinchReel(.3));*/
 		
-		btn2Start.whileHeld(new ExtendTapeMeasure(.3));
+		btnStart.whileHeld(new ShooterAngle(-.3));
+		btnBack.whileHeld(new ShooterAngle(.3));
+		//btnBack.whileHeld(new WinchReel(.3));
+		
+		/*btn2Start.whileHeld(new ExtendTapeMeasure(.3));
 		btn2Back.whileHeld(new ExtendTapeMeasure(-.3));
-		btn2Back.whileHeld(new WinchReel(.3));
+		btn2Back.whileHeld(new WinchReel(.3));*/
 
 			
 	}

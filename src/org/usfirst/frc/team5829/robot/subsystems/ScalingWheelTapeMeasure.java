@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class ScalingWheelTapeMeasure extends Subsystem {
-	CANTalon leftTapeMeasure = new CANTalon(RobotMap.leftTapeMeasureMotor);
+	//CANTalon leftTapeMeasure = new CANTalon(RobotMap.leftTapeMeasureMotor);
 	CANTalon rightTapeMeasure = new CANTalon(RobotMap.rightTapeMeasureMotor);
     
     // Put methods for controlling this subsystem
@@ -25,11 +25,11 @@ public class ScalingWheelTapeMeasure extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     public void extend(double reel) {
-    	leftTapeMeasure.set(reel);
+    	//leftTapeMeasure.set(reel);
     	rightTapeMeasure.set(-reel);
 	}
     public void doNothing() {
-    	leftTapeMeasure.set(0);
+    	//leftTapeMeasure.set(0);
     	rightTapeMeasure.set(0);
     }
 }

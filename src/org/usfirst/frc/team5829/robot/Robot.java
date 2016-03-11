@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5829.robot;
 
+import org.usfirst.frc.team5829.robot.commands.Autonomous;
 import org.usfirst.frc.team5829.robot.subsystems.*;
 
 import com.ni.vision.NIVision;
@@ -87,6 +88,7 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
+    	autonomousCommand = new Autonomous();
         if (autonomousCommand != null) autonomousCommand.start();
     }
 

@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class ScalingWinches extends Subsystem {
-	CANTalon leftWinch = new CANTalon(RobotMap.leftWinchMotor);
+	//CANTalon leftWinch = new CANTalon(RobotMap.leftWinchMotor);
 	CANTalon rightWinch = new CANTalon(RobotMap.rightWinchMotor);
     
     // Put methods for controlling this subsystem
@@ -25,11 +25,11 @@ public class ScalingWinches extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     public void reel(double reel) {
-    	leftWinch.set(reel);
+    	//leftWinch.set(reel);
     	rightWinch.set(reel);
 	}
     public void doNothing() {
-    	leftWinch.set(0);
+    	//leftWinch.set(0);
     	rightWinch.set(0);
     }
 }
