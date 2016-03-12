@@ -33,12 +33,12 @@ public class DriveBase extends Subsystem {
     }
     
     public void cheesyDrive(double straight, double rotate){
-    	for(int i=0;i<2;i++){ leftSideMotor[i].set((-straight*.4 + rotate*rotate*rotate)); }
-    	for(int i=0;i<2;i++){ rightSideMotor[i].set((-straight*.4 - rotate*rotate*rotate)); }
+    	for(int i=0;i<2;i++){ leftSideMotor[i].set((-rotate+ straight)); }
+    	for(int i=0;i<2;i++){ rightSideMotor[i].set((-rotate - straight)); }
     }
     public void flippedCheesyDrive(double straight, double rotate){
-    	for(int i=0;i<2;i++){ leftSideMotor[i].set((straight*.4 + rotate*rotate*rotate)); }
-    	for(int i=0;i<2;i++){ rightSideMotor[i].set((straight*.4 - rotate*rotate*rotate)); }
+    	for(int i=0;i<2;i++){ leftSideMotor[i].set((rotate + straight)); }
+    	for(int i=0;i<2;i++){ rightSideMotor[i].set((rotate - straight)); }
     }
   
 }

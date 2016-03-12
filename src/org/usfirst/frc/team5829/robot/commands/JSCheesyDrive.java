@@ -28,8 +28,8 @@ public class JSCheesyDrive extends Command {
     	double straight;  
     	double rotate;
     	
-    	rawstraight = -(Robot.oi.xbox.getRawAxis(4));
-    	rawrotate = -(Robot.oi.xbox.getRawAxis(1));
+    	rawstraight = -(Robot.oi.xbox.getRawAxis(1));
+    	rawrotate = -(Robot.oi.xbox.getRawAxis(4));
     	
     	if (Math.abs(rawstraight) < 0.18) {
     		straight = 0;
@@ -38,8 +38,8 @@ public class JSCheesyDrive extends Command {
     		rotate = 0;
     	}
     	
-    	straight = (0.1*(Math.pow(11, Math.abs(rawstraight)))-.1);
-    	rotate = (0.1*(Math.pow(11, Math.abs(rawrotate)))-.1);
+    	straight = (0.1*(Math.pow(11, Math.abs(rawstraight)))-.5);
+    	rotate = (0.1*(Math.pow(11, Math.abs(rawrotate)))-.5);
     	
     	if (rawstraight < 0){
     		straight= -(straight);
@@ -48,7 +48,7 @@ public class JSCheesyDrive extends Command {
     		rotate= -(rotate);
     	}
 
-    	Robot.driveTrain.cheesyDrive(straight, rotate); 
+    	Robot.driveTrain.cheesyDrive(rawstraight*.5, rawrotate); 
     	System.out.println("Left: "+straight);
     	System.out.println("Right: "+-1*(rotate));
     
