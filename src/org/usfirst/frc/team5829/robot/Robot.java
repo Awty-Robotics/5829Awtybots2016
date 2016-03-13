@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 //import org.usfirst.frc.team1114.robot.commands.ExampleCommand;
 //import org.usfirst.frc.team1114.robot.subsystems.ExampleSubsystem;
-
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.vision.USBCamera;
@@ -41,7 +41,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	
     //subsystems
-	public static final DriveBase driveTrain = new DriveBase();
+	public static final RushDrive driveTrain = new RushDrive();
 	public static final Shooter shooter = new Shooter();
 	public static final IntakeRollers intake = new IntakeRollers();
 	public static final IntakeAngle intakeAngle = new IntakeAngle();
@@ -51,8 +51,16 @@ public class Robot extends IterativeRobot {
 	public static final Electrical electrical = new Electrical();
 	public static final ShooterAngle shooterAngle = new ShooterAngle();
 	
-    Command autonomousCommand; 
-    SendableChooser autonChooser;
+	NetworkTable table;
+	
+	 Command autonomousCommand; 
+	 SendableChooser autonChooser;
+	
+	/*public Robot() {
+		table = NetworkTable.getTable("GRIP/myContoursReport");
+	}*/
+	
+   
 
     /**
      * This function is run when the robot is first started up and should be
@@ -80,9 +88,19 @@ public class Robot extends IterativeRobot {
 		autonChooser.addObject("Do Nothing", new Autonomous(6));
 		SmartDashboard.putData("Choose Auton", autonChooser);
 		
+		//The next 8 lines reads and displays network tames for vision processing
+		/*double[] defaultValue = new double[0];
+		while (true) {
+			double[] areas = table.getNumberArray("area", defaultValue);
+			System.out.print("areas: ");
+			for(double area : areas){
+				System.out.print(area + " ");
+			}
+		System.out.println();
+		Timer.delay(1);
+		}*/
         // instantiate the command used for the autonomous period
         //autonomousCommand = new ExampleCommand();
-
 
         // the camera name (ex "cam0") can be found through the roborio web interface
         /*session = NIVision.IMAQdxOpenCamera("cam0",

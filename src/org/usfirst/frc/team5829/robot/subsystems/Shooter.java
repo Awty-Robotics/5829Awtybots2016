@@ -117,18 +117,18 @@ public class Shooter extends Subsystem {
     	leftShooter.configPeakOutputVoltage(+12.0f, -0.0f);
     	rightShooter.configPeakOutputVoltage(+12.0f, -0.0f);
     	
-    	double shooterP = Robot.prefs.getDouble("shooterP", 0.4);
+    	double shooterP = Robot.prefs.getDouble("shooterP", 0.3);
     	double shooterI = Robot.prefs.getDouble("shooterI", 0);
-    	double shooterD = Robot.prefs.getDouble("shooterD", 4);
+    	double shooterD = Robot.prefs.getDouble("shooterD", 20);
     	double shooterF = Robot.prefs.getDouble("shooterF", 0);
     	double prefspeed = Robot.prefs.getDouble("prefspeed", 100);
     	
     	//(p, i, d, f, izone, closeLoopRampRate, profile)
-    	leftShooter.setPID(shooterP, shooterI, shooterD, shooterF, 0, 0, 0);
-    	rightShooter.setPID(shooterP, shooterI, shooterD, shooterF, 0, 0, 0);
+    	leftShooter.setPID(.3, 0, 20, 0, 0, 0, 0);
+    	rightShooter.setPID(.3, 0, 20, 0, 0, 0, 0);
     	
-    	leftShooter.set(prefspeed);
-    	rightShooter.set(prefspeed);
+    	leftShooter.set(speed);
+    	rightShooter.set(speed);
     	isShooting=true;
     }
     public void manualShoot(double speed) {

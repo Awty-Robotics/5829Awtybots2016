@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class DriveBase extends Subsystem {
+public class RushDrive extends Subsystem {
 	//As the left and right motors will always act together, I have chosen to array the left and right motors together
 	CANTalon leftSideMotor[] = {new CANTalon(RobotMap.leftBackMotor), new CANTalon(RobotMap.leftFrontMotor)};
 	CANTalon rightSideMotor[] = {new CANTalon(RobotMap.rightBackMotor), new CANTalon(RobotMap.rightFrontMotor)};
@@ -33,7 +33,7 @@ public class DriveBase extends Subsystem {
     }
     
     public void cheesyDrive(double straight, double rotate){
-    	for(int i=0;i<2;i++){ leftSideMotor[i].set((-rotate+ straight)); }
+    	for(int i=0;i<2;i++){ leftSideMotor[i].set((-rotate + straight)); }
     	for(int i=0;i<2;i++){ rightSideMotor[i].set((-rotate - straight)); }
     }
     public void flippedCheesyDrive(double straight, double rotate){

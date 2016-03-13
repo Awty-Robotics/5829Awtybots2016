@@ -7,11 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class AutoIntakeTime extends Command {
+public class AutoIntakeAngleTime extends Command {
 	double duration;
 	double speed;
 
-    public AutoIntakeTime(double time, double speed) {
+    public AutoIntakeAngleTime(double time, double speed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.intakeAngle);

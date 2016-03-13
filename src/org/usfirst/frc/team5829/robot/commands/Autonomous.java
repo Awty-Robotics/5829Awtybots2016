@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5829.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
@@ -21,16 +22,17 @@ public class Autonomous extends CommandGroup {
     }
     
     public void LowBar(){
-    	addSequential(new AutoIntakeTime(1.5, 0.3)); //low bar step 1
-    	addSequential(new AutoForwardTime(1.5, 0.5)); //low bar step 2
+    	addSequential(new AutoIntakeAngleTime(2.5, 0.3)); //low bar step 1
+    	addSequential(new AutoForwardTime(2.5, 0.5)); //low bar step 2
     }
     
     public void Moat(){
-    	addSequential(new AutoForwardTime(2, .75)); //works for moat
+    	addSequential(new AutoForwardTime(2.5, .5)); //works for moat
+    	//addSequential(new AutoShooterTargeting());
     }
     
     public void RoughTerrain(){
-    	addSequential(new AutoForwardTime(1, .75)); //works for rough terrain}
+    	addSequential(new AutoForwardTime(2, .75)); //works for rough terrain}
     }
     
     public void Ramparts(){

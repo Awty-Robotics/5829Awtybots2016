@@ -19,7 +19,7 @@ public class RobotMap {
 	public static int intakeMotor = 9;
 	public static int angleMotor = 6;
 	public static int rightTapeMeasureMotor = 11;
-	//public static int leftTapeMeasureMotor = 4;
+	public static int leftTapeMeasureMotor = 4;
 	//public static int leftWinchMotor = 5;
 	public static int rightWinchMotor = 10;
 	public static int shooterAngleMotor=4;

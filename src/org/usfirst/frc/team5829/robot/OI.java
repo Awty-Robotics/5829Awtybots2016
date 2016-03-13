@@ -75,8 +75,8 @@ public class OI {
 		btnA.whileHeld(new Shoot(3000));
 		btnA.whenReleased(new doneShooting());
 		
-		btnL1.whileHeld(new Intake(.9));
-		btnR1.whileHeld(new Intake(-.9));
+		btnL1.whileHeld(new Intake(.75));
+		btnR1.whileHeld(new Intake(-.75));
 		
 		
 		btn2L1.whileHeld(new Intake(1));
@@ -88,9 +88,9 @@ public class OI {
 		btnL3.whenReleased(new ShifterLowGear());
 		btnL3.whenPressed(new ShifterHighGear());
 		
-		/*btnStart.whileHeld(new ExtendTapeMeasure(-.3));
+		btnStart.whileHeld(new ExtendTapeMeasure(-.3));
 		btnBack.whileHeld(new ExtendTapeMeasure(.3));
-		btnBack.whileHeld(new WinchReel(.3));*/
+		btnBack.whileHeld(new WinchReel(.3));
 		
 		btnStart.whileHeld(new ShooterAngle(-.3));
 		btnBack.whileHeld(new ShooterAngle(.3));

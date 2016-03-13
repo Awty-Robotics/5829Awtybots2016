@@ -38,8 +38,8 @@ public class JSCheesyDrive extends Command {
     		rotate = 0;
     	}
     	
-    	straight = (0.1*(Math.pow(11, Math.abs(rawstraight)))-.5);
-    	rotate = (0.1*(Math.pow(11, Math.abs(rawrotate)))-.5);
+    	straight = (0.1*(Math.pow(11, Math.abs(rawstraight)))-.1);
+    	rotate = (0.1*(Math.pow(11, Math.abs(rawrotate)))-.1);
     	
     	if (rawstraight < 0){
     		straight= -(straight);
@@ -48,7 +48,7 @@ public class JSCheesyDrive extends Command {
     		rotate= -(rotate);
     	}
 
-    	Robot.driveTrain.cheesyDrive(rawstraight*.5, rawrotate); 
+    	Robot.driveTrain.cheesyDrive(straight*.5, rotate); 
     	System.out.println("Left: "+straight);
     	System.out.println("Right: "+-1*(rotate));
     
